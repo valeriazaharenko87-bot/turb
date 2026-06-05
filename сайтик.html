@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>ТурбоЧист 24/7 - Автомойка, заправка, кафе</title>
+    <meta name="author" content="Захаренко В.С.">
+    <meta name="description" content="Автомойка, заправка, магазин и кафе 24/7 в Оршанском районе">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /*БАЗА*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            background: #000;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*ХЕДЕР*/
+        header {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            margin: 0;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1480px;
+            margin: 0 auto;
+            height: 68px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background: linear-gradient(rgba(10,10,10,0.46), rgba(10,10,10,0.46));
+            background-color: #0a0a0a;
+            border: 3px solid #FF6200;
+            border-radius: 14px;
+            box-shadow: 0 0 30px rgba(255, 98, 0, 0.45);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .header-container {
+            height: 58px;
+            border-width: 2px;
+            box-shadow: 0 0 20px rgba(255, 98, 0, 0.35);
+        }
+
+        header.scrolled {
+            top: 0;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            padding: 0;
+        }
+
+        header.scrolled .header-container {
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+        }
+
+        /*ЛОГО*/
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo .logo-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #FF7121, #FF4400);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .logo .logo-icon {
+            width: 42px;
+            height: 42px;
+            font-size: 22px;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: 800;
+            color: #FF7121;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            transition: font-size 0.3s ease;
+        }
+
+        header.scrolled .logo span {
+            font-size: 20px;
+        }
+
+        /*НАВИГАЦИЯ*/
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 42px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Fascinate Inline', sans-serif;
+            transition: 0.3s ease;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #FF7121;
+            transform: translateY(-2px);
+        }
+
+        /*HERO*/
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            z-index: 1;
+        }
+
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255,113,33,0.15), transparent 70%);
+        }
+
+        /*HERO КОНТЕНТ*/
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        /*HERO ЛОГОТИП*/
+        .hero-logo {
+            text-align: center;
+        }
+
+        .hero-logo .hero-logo-icon {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #FF7121, #FF4400);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 15px;
+            box-shadow: 0 0 40px rgba(255,113,33,0.5);
+        }
+
+        /*ТИТЛЫ*/
+        .main-title {
+            font-size: clamp(28px, 5vw, 52px);
+            font-weight: 900;
+            color: #FF7121;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 4vw, 48px);
+            font-weight: 700;
+            line-height: 1.3;
+            color: #fff;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            font-family: 'Fascinate Inline', sans-serif;
+        }
+
+        .ampersand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+        }
+
+        /*КНОПКА*/
+        .main-button {
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .main-button a {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF7121, #FF4400);
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 800;
+            padding: 15px 40px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 0 20px rgba(255,113,33,0.5);
+        }
+
+        .main-button a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,113,33,0.8);
+        }
+
+        /*СТАТИСТИКА*/
+        .stats-marquee {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 12px 0;
+            margin: 20px 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .stats-marquee::-webkit-scrollbar {
+            display: none;
+        }
+
+        .stats {
+            display: inline-flex;
+            gap: clamp(30px, 5vw, 50px);
+            animation: marquee 28s linear infinite;
+            padding: 0 20px;
+        }
+
+        .stats:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .stat-item {
+            min-width: 130px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .stat-number {
+            font-size: clamp(24px, 4vw, 44px);
+            font-weight: 900;
+            color: #FF7121;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: clamp(11px, 2vw, 15px);
+            color: #eee;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        /*ПУЗЫРИ*/
+        .bubbles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255,113,33,0.4), rgba(255,113,33,0));
+            border-radius: 50%;
+            animation: float-up linear infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-120vh) translateX(60px);
+                opacity: 0;
+            }
+        }
+
+        .bubble:nth-child(1)  { width: 40px; height: 40px; left: 5%; animation-duration: 19s; }
+        .bubble:nth-child(2)  { width: 55px; height: 55px; left: 18%; animation-duration: 24s; }
+        .bubble:nth-child(3)  { width: 32px; height: 32px; left: 30%; animation-duration: 16s; }
+        .bubble:nth-child(4)  { width: 45px; height: 45px; left: 45%; animation-duration: 21s; }
+        .bubble:nth-child(5)  { width: 38px; height: 38px; left: 60%; animation-duration: 18s; }
+        .bubble:nth-child(6)  { width: 52px; height: 52px; left: 12%; animation-duration: 26s; }
+        .bubble:nth-child(7)  { width: 34px; height: 34px; left: 75%; animation-duration: 17s; }
+        .bubble:nth-child(8)  { width: 42px; height: 42px; left: 25%; animation-duration: 22s; }
+        .bubble:nth-child(9)  { width: 30px; height: 30px; left: 80%; animation-duration: 20s; }
+        .bubble:nth-child(10) { width: 46px; height: 46px; left: 42%; animation-duration: 23s; }
+
+        /*КЛУБНЫЕ КАРТЫ*/
+        .clubcards-section {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(255, 98, 0, 0.3);
+        }
+
+        .clubcards-section .main-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .clubcards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .clubcard-item {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+            max-width: 380px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #FF7121;
+            border-radius: 30px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .clubcard-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 113, 33, 0.3);
+        }
+
+        .clubcard-item.premium {
+            border-color: #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #FFD700;
+            color: #000;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 5px 15px;
+            border-radius: 25px;
+            z-index: 10;
+        }
+
+        .clubcard-photo {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(145deg, #1a1a1a, #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clubcard-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #FF7121, #FF4400);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+        }
+
+        .premium .clubcard-icon {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+
+        .clubcard-info {
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .clubcard-info h3 {
+            font-size: 24px;
+            color: #FF7121;
+            margin-bottom: 10px;
+        }
+
+        .premium .clubcard-info h3 {
+            color: #FFD700;
+        }
+
+        .clubcard-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .clubcard-price span {
+            font-size: 14px;
+            font-weight: normal;
+            opacity: 0.7;
+        }
+
+        .clubcard-info ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0 20px 0;
+            text-align: left;
+            flex: 1;
+        }
+
+        .clubcard-info li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .clubcard-info li::before {
+            content: "●";
+            color: #FF7121;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .premium .clubcard-info li::before {
+            color: #FFD700;
+        }
+
+        .clubcard-order {
+            background: #FF7121;
+            color: white;
+            font-weight: 800;
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .clubcard-order:hover {
+            background: white;
+            color: #FF7121;
+            transform: scale(1.02);
+        }
+
+        .premium .clubcard-order {
+            background: #FFD700;
+            color: #000;
+        }
+
+        /*ПАРТНЕРЫ*/
+        .partners-section {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+            padding: 80px 20px;
+            border-top: 1px solid rgba(255, 98, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .partners-section .main-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .partners-marquee {
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .partners-marquee::-webkit-scrollbar {
+            display: none;
+        }
+
+        .partners {
+            display: inline-flex;
+            gap: clamp(50px, 6vw, 100px);
+            animation: marquee 35s linear infinite;
+            padding: 0 20px;
+            align-items: center;
+        }
+
+        .partners:hover {
+            animation-play-state: paused;
+        }
+
+        .partner-item {
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.1);
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 20px;
+            color: #FF7121;
+        }
+
+        /*СПЕЦИАЛИСТЫ*/
+        .specialists-section {
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+            padding: 80px 20px;
+            border-top: 1px solid rgba(255, 98, 0, 0.3);
+        }
+
+        .specialists-section .main-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .specialists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .specialist-card {
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid #FF7121;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .specialist-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(255, 113, 33, 0.25);
+        }
+
+        .specialist-avatar {
+            width: 100%;
+            height: 260px;
+            background: linear-gradient(145deg, #1a1a1a, #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .specialist-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .specialist-info h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #FF7121;
+            margin-bottom: 5px;
+        }
+
+        .specialist-role {
+            display: inline-block;
+            font-size: 13px;
+            color: #ffffff;
+            background: rgba(255, 113, 33, 0.2);
+            padding: 4px 12px;
+            border-radius: 30px;
+            margin-bottom: 15px;
+        }
+
+        .specialist-info p {
+            font-size: 14px;
+            color: #ddd;
+            line-height: 1.5;
+        }
+
+        /*ДО / ПОСЛЕ HOVER*/
+        .beforeafter-section {
+            position: relative;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+            padding: 80px 20px;
+            border-top: 1px solid rgba(255, 98, 0, 0.3);
+        }
+
+        .beforeafter-section .main-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        .ba-hover-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .ba-hover {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+        }
+
+        .ba-clean, .ba-dirty {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 800;
+        }
+
+        .ba-clean {
+            background: linear-gradient(135deg, #00cc88, #009966);
+            color: white;
+            z-index: 1;
+        }
+
+        .ba-dirty {
+            background: linear-gradient(135deg, #8B6914, #654321);
+            color: #ddd;
+        }
+
+        .ba-hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+            transition: width 0.4s ease;
+            border-right: 3px solid #FF7121;
+        }
+
+        .ba-hover:hover .ba-hover-overlay {
+            width: 0%;
+        }
+
+        .ba-label {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 16px;
+            color: #FFD966;
+            font-weight: 600;
+        }
+
+        /*FAQ*/
+        .faq-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+            padding: 80px 20px;
+            border-top: 1px solid rgba(255, 98, 0, 0.3);
+        }
+
+        .faq-section .main-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-checkbox {
+            display: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+            cursor: pointer;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 113, 33, 0.1);
+        }
+
+        .faq-question span {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .faq-icon {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-checkbox:checked + .faq-question .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 24px;
+        }
+
+        .faq-checkbox:checked ~ .faq-answer {
+            max-height: 200px;
+            padding: 0 24px 18px 24px;
+        }
+
+        .faq-answer p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        /*ФУТЕР*/
+        .footer {
+            background: #0A0A0A;
+            margin-top: auto;
+        }
+
+        .footer::before {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FF7121, transparent);
+        }
+
+        .footer-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 55px 20px 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-contacts {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: clamp(24px, 2vw, 36px);
+            font-weight: 700;
+            margin-bottom: 42px;
+            color: #ffffff;
+        }
+
+        .footer-phone, .footer-email, .footer-address {
+            font-size: clamp(16px, 1.2vw, 31px);
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,113,33,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FF7121;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #FF7121;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding: 30px 20px 25px;
+            border-top: 1px solid rgba(255, 113, 33, 0.3);
+        }
+
+        .footer-copyright p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /*МЕДИА-ЗАПРОСЫ*/
+        @media (max-width: 992px) {
+            header { padding: 0 15px; top: 5px; }
+            .header-container {
+                height: auto;
+                flex-direction: column;
+                padding: 10px 16px;
+            }
+            nav { flex-wrap: wrap; justify-content: center; gap: 20px; }
+            nav a { font-size: 16px; }
+        }
+
+        @media (max-width: 768px) {
+            .stats, .partners { animation: none; width: max-content; }
+            nav a { font-size: 13px; }
+            .logo .logo-icon { width: 35px; height: 35px; font-size: 18px; }
+            .logo span { font-size: 18px; }
+            .hero-logo .hero-logo-icon { width: 70px; height: 70px; font-size: 38px; }
+            .main-button a { font-size: 16px; padding: 12px 30px; }
+        }
+
+        @media (max-width: 480px) {
+            nav { gap: 12px; }
+            nav a { font-size: 10px; }
+            .logo span { font-size: 14px; }
+            .partner-item { padding: 10px 20px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">ТЧ</div>
+                <span>ТурбоЧист</span>
+            </div>
+            <nav>
+                <a href="#">Главная</a>
+                <a href="#">Услуги</a>
+                <a href="#">Цены</a>
+                <a href="#">Преимущества</a>
+                <a href="#">Местонахождение</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <section class="hero">
+            <div class="hero-background"></div>
+            <div class="bubbles">
+                <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+                <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+                <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <div class="hero-logo-icon">ТЧ</div>
+                </div>
+                <h1 class="main-title">ТУРБОЧИСТ <span>24/7</span></h1>
+                <h2 class="subtitle">АВТОМОЙКА + ЗАПРАВКА<br>+ МАГАЗИН <span class="ampersand">&amp;</span> КАФЕ</h2>
+                
+                <div class="stats-marquee">
+                    <div class="stats">
+                        <div class="stat-item"><span class="stat-number">5000+</span><p>ДОВОЛЬНЫХ КЛИЕНТОВ</p></div>
+                        <div class="stat-item"><span class="stat-number">12400+</span><p>МАШИН ОБСЛУЖЕНО</p></div>
+                        <div class="stat-item"><span class="stat-number">24/7</span><p>РАБОТАЕМ БЕЗ ВЫХОДНЫХ</p></div>
+                        <div class="stat-item"><span class="stat-number">150+</span><p>АВТО В ДЕНЬ</p></div>
+                        <div class="stat-item"><span class="stat-number">98%</span><p>КЛИЕНТОВ ВОЗВРАЩАЮТСЯ</p></div>
+                        <div class="stat-item"><span class="stat-number">5000+</span><p>ДОВОЛЬНЫХ КЛИЕНТОВ</p></div>
+                        <div class="stat-item"><span class="stat-number">12400+</span><p>МАШИН ОБСЛУЖЕНО</p></div>
+                        <div class="stat-item"><span class="stat-number">24/7</span><p>РАБОТАЕМ БЕЗ ВЫХОДНЫХ</p></div>
+                    </div>
+                </div>
+
+                <div class="main-button">
+                    <a href="#">Как добраться?</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="clubcards-section">
+            <h2 class="main-title">КЛУБНАЯ КАРТА ТУРБОЧИСТ</h2>
+            <div class="clubcards-grid">
+                <div class="clubcard-item">
+                    <div class="clubcard-photo"><div class="clubcard-icon">⭐</div></div>
+                    <div class="clubcard-info">
+                        <h3>Стандарт</h3>
+                        <div class="clubcard-price">25 BYN <span>/ год</span></div>
+                        <ul><li>Накопительные бонусы до 5%</li><li>Скидка 10% на мойку</li><li>Бесплатная подкачка шин</li></ul>
+                        <button class="clubcard-order">Оформить</button>
+                    </div>
+                </div>
+                <div class="clubcard-item premium">
+                    <div class="premium-badge">Лучший выбор</div>
+                    <div class="clubcard-photo"><div class="clubcard-icon">👑</div></div>
+                    <div class="clubcard-info">
+                        <h3>Премиум</h3>
+                        <div class="clubcard-price">50 BYN <span>/ год</span></div>
+                        <ul><li>Накопительные бонусы до 15%</li><li>Скидка 25% на все услуги</li><li>Приоритетное обслуживание</li><li>Бесплатная химчистка салона 1 раз в год</li><li>Подарок на день рождения</li></ul>
+                        <button class="clubcard-order">Оформить</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="partners-section">
+            <h2 class="main-title">НАШИ ПАРТНЕРЫ</h2>
+            <div class="partners-marquee">
+                <div class="partners">
+                    <div class="partner-item">AUTO EXPERT</div>
+                    <div class="partner-item">Shell</div>
+                    <div class="partner-item">Castrol</div>
+                    <div class="partner-item">Mobil 1</div>
+                    <div class="partner-item">LIQUI MOLY</div>
+                    <div class="partner-item">Bosch</div>
+                    <div class="partner-item">AUTO EXPERT</div>
+                    <div class="partner-item">Shell</div>
+                    <div class="partner-item">Castrol</div>
+                    <div class="partner-item">Mobil 1</div>
+                    <div class="partner-item">LIQUI MOLY</div>
+                    <div class="partner-item">Bosch</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="specialists-section">
+            <h2 class="main-title">СПЕЦИАЛИСТЫ</h2>
+            <div class="specialists-grid">
+                <div class="specialist-card">
+                    <div class="specialist-avatar">👩‍💼</div>
+                    <div class="specialist-info">
+                        <h3>Валерия Захаренко</h3>
+                        <span class="specialist-role">Администратор комплекса</span>
+                        <p>Стаж 6 лет. Отвечает за работу всей смены, решает вопросы клиентов и следит за порядком.</p>
+                    </div>
+                </div>
+                <div class="specialist-card">
+                    <div class="specialist-avatar">🛒</div>
+                    <div class="specialist-info">
+                        <h3>Сарра Жданова</h3>
+                        <span class="specialist-role">Продавец-консультант</span>
+                        <p>Стаж 4 года. Отлично разбирается в автохимии, маслах и аксессуарах.</p>
+                    </div>
+                </div>
+                <div class="specialist-card">
+                    <div class="specialist-avatar">☕</div>
+                    <div class="specialist-info">
+                        <h3>Дана Шекина</h3>
+                        <span class="specialist-role">Бариста</span>
+                        <p>Стаж 3 года. Мастер кофе. Готовит отличный кофе 24/7.</p>
+                    </div>
+                </div>
+                <div class="specialist-card">
+                    <div class="specialist-avatar">🍔</div>
+                    <div class="specialist-info">
+                        <h3>Ксения Осипенко</h3>
+                        <span class="specialist-role">Повар</span>
+                        <p>Стаж 5 лет. Готовит вкусные горячие блюда даже ночью.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <section class="beforeafter-section">
+        <h2 class="main-title">МОЙКА САМООБСЛУЖИВАНИЕ</h2>
+        <p class="section-subtitle">Наведите курсор на изображение, чтобы увидеть результат</p>
+        <div class="ba-hover-container">
+            <div class="ba-hover">
+                <div class="ba-clean">✨ ПОСЛЕ ✨</div>
+                <div class="ba-hover-overlay">
+                    <div class="ba-dirty">💧 ДО 💧</div>
+                </div>
+            </div>
+            <p class="ba-label">Наглядный пример работы мойки самообслуживания</p>
+        </div>
+    </section>
+    
+    <section class="faq-section">
+        <h2 class="main-title">ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <input type="checkbox" id="faq1" class="faq-checkbox">
+                <label for="faq1" class="faq-question"><span>Какие способы оплаты?</span><div class="faq-icon">+</div></label>
+                <div class="faq-answer"><p>Мы принимаем: наличные, банковские карты (Visa, MasterCard, Белкарт), оплату через ЕРИП, а также безналичный расчет для организаций.</p></div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq2" class="faq-checkbox">
+                <label for="faq2" class="faq-question"><span>Нужна ли предзапись?</span><div class="faq-icon">+</div></label>
+                <div class="faq-answer"><p>Предзапись не обязательна, вы можете приехать в любое удобное время.</p></div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq3" class="faq-checkbox">
+                <label for="faq3" class="faq-question"><span>Работаете ли в праздники?</span><div class="faq-icon">+</div></label>
+                <div class="faq-answer"><p>Да, мы работаем без выходных и в праздничные дни 24/7.</p></div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq4" class="faq-checkbox">
+                <label for="faq4" class="faq-question"><span>Какие скидки есть для постоянных клиентов?</span><div class="faq-icon">+</div></label>
+                <div class="faq-answer"><p>При оформлении клубной карты вы получаете скидку до 25% и накопительные бонусы до 15%.</p></div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq5" class="faq-checkbox">
+                <label for="faq5" class="faq-question"><span>Есть ли кафе и что там можно купить?</span><div class="faq-icon">+</div></label>
+                <div class="faq-answer"><p>Да, на территории работает кафе. Кофе, чай, свежая выпечка, сэндвичи и другие перекусы.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-contacts">
+                <h4 class="footer-title">Контакты</h4>
+                <p class="footer-phone">📞 +375 (29) 761-94-26</p>
+                <p class="footer-email">✉ info@turbochist.by</p>
+                <p class="footer-address">📍 трасса М8, въезд в Барань, Оршанский район</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">💬</a>
+                    <a href="#" class="social-icon">📘</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2026 ТурбоЧист. Все права защищены.</p>
+        </div>
+    </footer>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
